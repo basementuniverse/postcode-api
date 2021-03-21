@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "db370d09-1d03-4c44-a585-f1cbb08aafb3",
+		"name": "postcode-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Entrypoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080",
+					"host": [
+						"localhost:8080"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find postcodes by partial match",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/postcodes/test123",
+					"host": [
+						"localhost:8080"
+					],
+					"path": [
+						"postcodes",
+						"test123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find postcodes by location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/postcodes/12.34/56",
+					"host": [
+						"localhost:8080"
+					],
+					"path": [
+						"postcodes",
+						"12.34",
+						"56"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
