@@ -1,3 +1,17 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+find_postcodes_by_location:
+    path: /postcodes/{lat}/{long}/{range}
+    controller: App\Controller\PostcodeController::findByLocation
+    defaults:
+        range: 5
+    requirements:
+        lat: '\d+(\.\d+)?'
+        long: '\d+(\.\d+)?'
+
+find_postcodes_by_partial_match:
+    path: /postcodes/{partial}
+    controller: App\Controller\PostcodeController::findByPartialMatch
+    methods: GET

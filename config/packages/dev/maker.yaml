@@ -1,2 +1,2 @@
 maker:
-    root_namespace: 'App\Core'
+    root_namespace: 'App'
