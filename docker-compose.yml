@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+    nginx:
+        build:
+            context: .
+            dockerfile: ./build/Dockerfile-nginx
+        volumes:
+            - ./:/var/www/
+        ports:
+            - 8080:80
+        networks:
+            - postcode-api
+        depends_on:
+            - php
+
+    php:
+        build:
+            context: .
+            dockerfile: ./build/Dockerfile-php
+        environment:
+            APP_ENV: ${APP_ENV}
+            DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7"
+        volumes:
+            - ./:/var/www/
+        networks:
+            - postcode-api
+        depends_on:
+            - mysql
+
+    mysql:
+        image: mysql
+        command: [
+            '--character-set-server=utf8mb4',
+            '--collation-server=utf8mb4_unicode_ci',
+            '--default-authentication-plugin=mysql_native_password'
+        ]
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        ports:
+            - 3307:3306 # Just in case you've got mysqld running on your host:3306 already
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - postcode-api
+
+networks:
+    postcode-api:
