@@ -3,5 +3,5 @@
 Start the API:
 
 ```
-docker-compose up
+docker-compose up --build
 ```
