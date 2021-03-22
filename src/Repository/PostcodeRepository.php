@@ -91,7 +91,7 @@ class PostcodeRepository extends ServiceEntityRepository
         $a = sin($deltaLatitude / 2) ** 2 + cos($phi1) * cos($phi2) * sin($deltaLongitude / 2) ** 2;
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
-        return self::R * $c;
+        return self::EARTH_RADIUS * $c;
     }
 
     /**
